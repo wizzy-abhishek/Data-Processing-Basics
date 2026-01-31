@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
 
 df = pd.read_csv('height_weight_linear_data.csv')
 
@@ -15,3 +16,11 @@ scalar = StandardScaler()
 
 X_train = scalar.fit_transform(X_train)
 X_test = scalar.transform(X_test) # Do not fit to prevent data leakage
+
+# Initialzing the model 
+
+regression = LinearRegression(n_jobs=-1)
+
+regression.fit(X_train, y_train)
+print(regression.coef_)
+print(regression.intercept_)
